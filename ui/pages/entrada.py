@@ -5,7 +5,6 @@
 
 from __future__ import annotations
 
-import uuid
 from decimal import Decimal
 
 import streamlit as st
@@ -71,7 +70,7 @@ def render() -> None:
 
             pedido = PedidoMovimento(
                 warehouse_id=dep.id,
-                usuario_id=uuid.uuid4(),  # trocar pelo usuario logado real
+                usuario_id=st.session_state["user"]["id"],
                 mesmo_centro_sap=mesmo_centro,
                 itens=[
                     ItemMovimento(

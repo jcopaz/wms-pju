@@ -14,6 +14,20 @@ Formato de cada entrada:
 
 ---
 
+## v0.2.0 — 2026-10-07
+- O que mudou: login provisório com usuários no banco (`users.password_hash`,
+  PBKDF2-SHA256 600 mil iterações, bloqueio após 5 tentativas na sessão);
+  script `scripts/criar_usuario.py` para criar/trocar senha/desativar;
+  telas de Entrada, Saída, Transferência e Inventário passam a gravar o
+  usuário logado (antes enviavam um UUID aleatório, o que violava a FK
+  `users.id` e impedia qualquer movimento). Banco passa a ser o Neon.
+- Arquivos afetados: app.py, services/auth_service.py (novo),
+  scripts/criar_usuario.py (novo), ui/pages/entrada.py, saida.py,
+  transferencia.py, inventario.py, README.md, .env.example.
+- Motivo/decisão: permitir piloto publicado sem acesso aberto; Supabase da
+  org Free já está no limite.
+- Decisão anterior substituída: login placeholder que aceitava qualquer senha.
+
 ## v0.1.0 — 2026-08-14
 - O que mudou: criação inicial do projeto VIA WMS (esqueleto completo).
   - Camadas: core, models, services, ui, scripts.

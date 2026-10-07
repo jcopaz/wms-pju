@@ -104,7 +104,7 @@ def render() -> None:
                     system_quantity=sistema,
                     counted_quantity=Decimal(str(contado)),
                     difference_quantity=Decimal(str(contado)) - sistema,
-                    counted_by_id=uuid.uuid4(),
+                    counted_by_id=st.session_state["user"]["id"],
                     counted_at=datetime.now(timezone.utc),
                 )
                 db.add(cont)

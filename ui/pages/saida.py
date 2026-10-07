@@ -5,7 +5,6 @@
 
 from __future__ import annotations
 
-import uuid
 from decimal import Decimal
 
 import streamlit as st
@@ -90,7 +89,7 @@ def render() -> None:
 
             pedido = PedidoMovimento(
                 warehouse_id=dep.id,
-                usuario_id=uuid.uuid4(),
+                usuario_id=st.session_state["user"]["id"],
                 account_assignment_id=objeto.id,
                 recipient_id=recebedor.id if recebedor else None,
                 operational_order_number=os_num or None,

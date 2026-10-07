@@ -76,12 +76,17 @@ via_wms/
    ```bash
    pip install -r requirements.txt
    ```
-2. Copie o `.env.example` para `.env` e preencha o `DATABASE_URL` do Supabase.
+2. Copie o `.env.example` para `.env` e preencha o `DATABASE_URL` (banco no Neon).
 3. Crie as tabelas e dados de teste:
    ```bash
    python scripts/seed.py
    ```
-4. Rode o app:
+4. Crie seu usuário de acesso (a senha é pedida sem aparecer na tela):
+   ```bash
+   python scripts/criar_usuario.py
+   ```
+   Para bloquear alguém: `python scripts/criar_usuario.py --desativar MATRICULA`.
+5. Rode o app:
    ```bash
    streamlit run app.py
    ```
@@ -103,7 +108,7 @@ via_wms/
 
 ## 🚧 Próximos passos sugeridos
 
-- Trocar o login placeholder por **AD/Entra ID**.
+- Trocar o login provisório (usuários no banco, senha PBKDF2) por **AD/Entra ID**.
 - Implementar telas de **custódia** e **conciliação SAP**.
 - Migrações com **Alembic**.
 - Leitura de **QR Code / código de barras** no celular.

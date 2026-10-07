@@ -25,7 +25,7 @@ except Exception:
 # -----------------------------------------------------------------------------
 APP_NAME = "VIA WMS"
 APP_SUBTITLE = "Controle de Materiais - Via Permanente"
-APP_VERSION = "0.1.0"
+APP_VERSION = "0.2.0"
 
 # Paleta oficial (mesma linha do Sentinel: navy + ambar de sinalizacao)
 COR_PRIMARIA = "#0B2545"   # Navy - barra, titulos

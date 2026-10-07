@@ -25,17 +25,37 @@ aplicar_estilo()
 # endregion
 
 
-# region SESSAO 2 - LOGIN SIMPLES (placeholder - trocar por AD/Entra ID)
+# region SESSAO 2 - LOGIN PROVISORIO (usuarios no banco; AD/Entra ID depois)
+MAX_TENTATIVAS = 5
+
+
 def tela_login() -> bool:
+    """Mostra o formulario de login e valida no banco (services/auth_service)."""
+    from core.database import get_session
+    from services import auth_service
+
     cabecalho("Acesso ao sistema")
-    st.info("Faca login para continuar. (Integrar com AD/Entra ID na producao.)")
+    tentativas = st.session_state.get("tentativas_login", 0)
+    if tentativas >= MAX_TENTATIVAS:
+        st.error("Muitas tentativas erradas. Feche o navegador e tente de novo mais tarde.")
+        return False
+
     with st.form("login"):
         login = st.text_input("Usuario (matricula)")
         senha = st.text_input("Senha", type="password")
         ok = st.form_submit_button("Entrar")
-    if ok and login:
-        st.session_state["user"] = {"login": login, "name": login}
-        st.rerun()
+    if ok and login and senha:
+        with get_session() as db:
+            usuario = auth_service.autenticar(db, login, senha)
+        if usuario is None:
+            st.session_state["tentativas_login"] = tentativas + 1
+            st.error("Usuario ou senha invalidos.")
+        else:
+            st.session_state.pop("tentativas_login", None)
+            st.session_state["user"] = {
+                "id": usuario.id, "login": usuario.login, "name": usuario.name,
+            }
+            st.rerun()
     return "user" in st.session_state
 # endregion
 

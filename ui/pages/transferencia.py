@@ -5,7 +5,6 @@
 
 from __future__ import annotations
 
-import uuid
 from decimal import Decimal
 
 import streamlit as st
@@ -57,7 +56,7 @@ def render() -> None:
                 return
             pedido = PedidoMovimento(
                 warehouse_id=dep.id,
-                usuario_id=uuid.uuid4(),
+                usuario_id=st.session_state["user"]["id"],
                 itens=[
                     ItemMovimento(
                         material_id=material.id,
