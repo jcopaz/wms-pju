@@ -55,8 +55,8 @@ def render() -> None:
     col_a, col_b = st.columns(2)
     with col_a:
         st.subheader("Top consumidos")
-        st.dataframe(top, hide_index=True, use_container_width=True)
+        st.dataframe(top, hide_index=True, width="stretch")
     with col_b:
         st.subheader("Saldo por depósito")
-        st.dataframe(saldo_dep, hide_index=True, use_container_width=True)
+        st.dataframe(saldo_dep, hide_index=True, width="stretch")
     # endregion

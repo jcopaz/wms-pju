@@ -24,7 +24,7 @@ def render() -> None:
         try:
             df = sap_import_service.ler_excel(arquivo)
             st.write("Prévia do arquivo:")
-            st.dataframe(df.head(10), use_container_width=True)
+            st.dataframe(df.head(10), width="stretch")
             st.caption(f"Colunas detectadas: {list(df.columns)}")
         except Exception as exc:
             st.error(f"Não consegui ler o arquivo: {exc}")
