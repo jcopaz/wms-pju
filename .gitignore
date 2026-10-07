@@ -1,0 +1,18 @@
+# Segredos
+.env
+.streamlit/secrets.toml
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Arquivos de trabalho SAP (import/export)
+data/
+
+# IDE / SO
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
